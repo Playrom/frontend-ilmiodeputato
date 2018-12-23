@@ -1,0 +1,29 @@
+.collegio-page {
+  section {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+.block-title span.it-category {
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+}
+
+.block-title  span, .block-title  h1, .block-title  p {
+  color: #FFF;
+}
+
+@media (min-width: 992px){
+  .block-title .block h1 {
+    font-size: 2.66667rem;
+  }
+}
+
+.block-title .block h1 {
+  font-size: 2rem;
+  letter-spacing: unset;
+}

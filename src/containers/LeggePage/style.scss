@@ -1,0 +1,19 @@
+.legge-page {
+  
+  .first-row , .second-row{
+    width: 100%;
+  }
+
+  .first-row{
+    background: white;
+  }
+
+  .second-row{
+    margin-top:20px;
+  }
+  
+  section {
+    display: flex;
+    flex-flow: row;
+  }
+}

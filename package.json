@@ -3,9 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap-italia": "^0.27.5",
+    "chart.js": "^2.7.3",
+    "dayjs": "*",
+    "dotenv": "*",
+    "history": "4.7.2",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.11.0",
+    "owl.carousel": "^2.3.4",
+    "popper.js": "^1.14.6",
     "react": "^16.6.3",
+    "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-google-maps": "^9.4.5",
+    "react-helmet": "*",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "twkb": "^0.2.0",
+    "wkx": "^0.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

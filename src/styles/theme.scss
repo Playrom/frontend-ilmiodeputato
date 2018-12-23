@@ -1,0 +1,103 @@
+@import './colors';
+
+body{
+    background:$primary-a6 !important;
+}
+@import './global-styles.scss';
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.capitalized-text{
+    text-transform: capitalize;
+}
+
+.root-flex{
+    display: flex;
+
+    @include md-max{
+        flex-wrap: wrap;
+    }
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    @include md-max{
+        flex-basis: 100%;
+    }
+}
+
+.row-75{
+    @extend .row;
+    @include md-min{
+        flex-basis: 75%;
+    }
+}
+.row-60{
+    @extend .row;
+    @include md-min{
+        flex-basis: 60%;
+    }
+}
+
+.row-50{
+    @extend .row;
+    @include md-min{
+        flex-basis: 50%;
+    }
+}
+
+.row-40{
+    @extend .row;
+    @include md-min{
+        flex-basis: 40%;
+    }
+}
+
+.row-25{
+    @extend .row;
+    @include md-min{
+        flex-basis: 25%;
+    }
+}
+
+.row-20{
+    @extend .row;
+    @include md-min{
+        flex-basis: 20%;
+    }
+}
+
+.row-10{
+    @extend .row;
+    @include md-min{
+        flex-basis: 10%;
+    }
+}
+
+/* COLORS */
+
+.u-color-ok{
+    color : green;
+}
+
+.u-color-danger{
+    color: red;
+}

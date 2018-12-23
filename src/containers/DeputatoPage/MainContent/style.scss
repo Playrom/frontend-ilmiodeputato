@@ -1,0 +1,28 @@
+@import '../../../styles/global-styles.scss';
+
+.deputato-page{
+  .main{
+    width: 100%;
+
+    @include md-min{
+      width: calc(100% - 30px);
+      margin-left:30px;
+    }
+
+    p{
+      margin: 5px 0;
+    }
+
+    .entry:not(:first-child){
+      margin-top:20px;
+    }
+
+    @include md-max{
+      .entry:first-child{
+        margin-top:20px;
+      }
+    }
+
+    
+  }
+}

@@ -1,0 +1,8 @@
+@import "../../../styles/colors";
+.lista-deputati .col-lg-6 {
+  background: $lightgrey-c1;
+}
+.lista-deputati .col-lg-6:nth-of-type(4n+2),
+.lista-deputati .col-lg-6:nth-of-type(4n+3){
+  background:$white;
+}

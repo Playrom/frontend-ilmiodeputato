@@ -1,0 +1,43 @@
+.deputato-page{
+  .riepilogo-collegio{
+    background-color: rgb(250, 250, 250);
+    border: 1px solid #FFFFFF;
+
+
+    .mappa{
+      position: relative;
+      overflow: hidden;
+      float: left;
+      width: 100%;
+      height: 300px;
+    }
+
+    .titolo-collegio {
+      width: 100%;
+      padding: 10px 10px 5px 10px;
+      margin: 0;
+    }
+
+    .deputato-luogo, .deputato-nome{
+      text-transform: capitalize;
+    }
+  
+    .deputato-foto, .deputato-nome {
+      float: left;
+      position: relative;
+    }
+  
+    .deputato-nome-simbolo{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .lista-simbolo img{
+        width: 75px;
+        height: auto;
+      }
+  
+    }
+
+  }
+}

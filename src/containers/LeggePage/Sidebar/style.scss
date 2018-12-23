@@ -1,0 +1,33 @@
+@import '../../../styles/global-styles.scss';
+
+.legge-page{
+  .sidebar{
+    
+    flex-shrink: 0;
+    width: 100%;
+
+    @include md-min{
+      width: calc(100% - 30px);
+      margin-right: 30px;
+    }
+
+    p{
+      margin: 5px 0;
+    }
+
+    .sidebar-content{
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .entry:not(:first-child){
+      margin-top:20px;
+    }
+
+    @include md-max{
+      .entry:first-child{
+        margin-top:20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import '../../../styles/global-styles.scss';
+
+.collegio-page{
+
+  .deputato{
+    // padding: 10px;
+
+    p{
+      margin: 5px 0;
+    }
+  }
+
+  .deputato-luogo, .deputato-nome{
+    text-transform: capitalize;
+  }
+
+  .deputato-foto, .deputato-nome {
+    float: left;
+    position: relative;
+  }
+
+  .deputato-foto img{
+    border:1px solid #000;
+    margin-right: 10px;
+  }
+
+  .deputato-contenuto{
+
+  }
+
+  .deputato-nome-simbolo{
+    
+    .lista-simbolo img{
+      width: 75px;
+      height: auto;
+    }
+
+  }
+
+  .deputato-link{
+
+    .link{
+      text-decoration: none;
+    }
+  }
+
+  /* SIZE */
+
+  .deputato-main{
+    float: left;
+    position: relative;
+    flex-basis: 100%;
+  }
+
+
+  .lista-deputati{
+    .deputato:nth-child(odd) {
+      margin-right: 5px;
+    }
+
+    .deputato:nth-child(even) {
+      margin-left: 5px;
+    }
+  }
+
+  .deputato-small{
+    float: left;
+    position: relative;
+    flex-basis: 100%;
+
+    background-color: rgb(250, 250, 250);
+    border: 1px solid #FFFFFF;
+    margin-top:10px;
+
+    @include md-min{
+      flex-basis: calc(50% - 5px);
+    }
+  }
+}

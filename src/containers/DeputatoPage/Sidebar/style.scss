@@ -1,0 +1,71 @@
+@import '../../../styles/global-styles.scss';
+
+.deputato-page{
+  .sidebar{
+    
+    flex-shrink: 0;
+    width: 100%;
+
+    @include md-min{
+      width: calc(100% - 30px);
+      margin-right: 30px;
+    }
+
+    p{
+      margin: 5px 0;
+    }
+
+    .sidebar-content{
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .deputato-luogo, .deputato-nome{
+      text-transform: capitalize;
+    }
+
+    .deputato-foto {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .deputato-contenuto{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      list-style: none;
+
+      .social{
+        flex-basis: 100%;
+
+        button{
+          width: 100%;
+        }
+      }
+    }
+
+    .deputato-nome-simbolo{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .lista-simbolo img{
+        width: 75px;
+        height: auto;
+      }
+
+    }
+
+    .deputato-link{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
+
+      .link{
+        text-decoration: none;
+      }
+    }
+  }
+}
