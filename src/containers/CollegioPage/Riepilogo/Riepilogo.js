@@ -29,7 +29,7 @@ class Riepilogo extends React.PureComponent {
             <Deputato key={this.state.uninominale.id} className="deputato-main" info={this.state.uninominale} />
         </div>
         <div className="col-lg-6 lightgrey-bg-c1">
-          <Graph data={this.state.risultatiUninominale} />
+          <Graph data={this.state.risultatiUninominale} title="Risultato Coalizioni" />
         </div>
       </div>
     );

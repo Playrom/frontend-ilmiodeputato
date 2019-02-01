@@ -1,45 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
-import Deputato from '../Deputato';
-import { downloadMap } from '../../../api-connect';
+import { downloadMap } from '../../api-connect';
 import './style.scss';
 
 class Mappa extends React.PureComponent {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps;
+
+  state = {
+    collegio: null,
+    geoJsonUrl: null,
+    loading: true,
+
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      collegio: props.collegio,
+      geoJsonUrl: props.geoJsonUrl,
+      loading: props.loading,
+    }
   }
 
   constructor(props) {
     super(props);
     this.map = React.createRef();
-    this.state = {
-      collegio: {}, loading: props.loading
-    };
   }
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    this.map = new google.maps.Map(this.collegio_map, {
-      zoom: 16
-    });
-    this.updateMap();
+    if(google){
+      // eslint-disable-next-line no-undef
+      this.map = new google.maps.Map(this.collegio_map, {
+        zoom: 16
+      });
+      this.updateMap();
+    }
   }
 
-  componentDidUpdate() {
-    this.setState({
-      collegio: this.props.collegio, loading: this.props.loading
-    }, () => {
-      this.updateMap();
-    });
+  componentDidUpdate(){
+    this.updateMap()
   }
 
   updateMap() {
-    if (this.state.collegio.geoJsonMap) {
+    if (this.state.collegio && this.state.collegio.geoJsonMap) {
       let geoJsonReq = `${this.state.collegio.geoJsonMap}/uninominale`;
       downloadMap(geoJsonReq, 'uninominale', '#FF0000', this.downloadMapCall.bind(this));
 
       geoJsonReq = `${this.state.collegio.geoJsonMap}/plurinominale`;
+      downloadMap(geoJsonReq, 'proporzionale', '#FFFF00', this.downloadMapCall.bind(this));
+    }else if (this.state.geoJsonUrl) {
+      let geoJsonReq = `${this.state.geoJsonUrl}/uninominale`;
+      downloadMap(geoJsonReq, 'uninominale', '#FF0000', this.downloadMapCall.bind(this));
+
+      geoJsonReq = `${this.state.geoJsonUrl}/plurinominale`;
       downloadMap(geoJsonReq, 'proporzionale', '#FFFF00', this.downloadMapCall.bind(this));
     }
   }
@@ -72,20 +84,21 @@ class Mappa extends React.PureComponent {
   }
 
   render() {
-    let row = null;
-    if (!this.state.collegio.estero) {
-      row = (
-        <div key="map" className="collegio-mappa" id="collegio_map" ref={(c) => { this.collegio_map = c; }} ></div>
-      );
-    }
-    return row;
+    return <div key="map" className="collegio-mappa" id="collegio_map" ref={(c) => { this.collegio_map = c; }} ></div>
   }
 }
 
 Mappa.propTypes = {
   collegio: PropTypes.object,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  geoJsonUrl: PropTypes.string
 };
+
+Mappa.defaultProps = {
+  collegio: null,
+  loading: true,
+  geoJsonUrl: null
+}
 
 
 export default Mappa;

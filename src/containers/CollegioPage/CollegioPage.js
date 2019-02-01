@@ -8,28 +8,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import Riepilogo from './Riepilogo';
-import Mappa from './Mappa';
+import Mappa from '../../components/Mappa';
 import ListaDeputati from './ListaDeputati';
-import Graph from '../../components/Graph';
+import RiepilogoListe from './RiepilogoListe';
 import { getApi } from '../../api-connect';
 import LoadingIndicator from '../../components/LoadingIndicator';
 
 import './style.scss';
 
 export default class CollegioPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      collegio: {}, uninominale: {}, proporzionale: [], loading: true, id: props.match.params.id, estero: props.estero, stato: props.match.params.stato
-    };
+  state = {
+    collegio: {},
+    uninominale: {},
+    proporzionale: [],
+    risultatiUninominale: [],
+    risultatiPlurinominale : [],
+    risultatiNazionali: [],
+    id: '',
+    estero: false,
+    stato: '',
+    loading: true,
+
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      estero: props.estero,
+      id: props.match.params.id,
+      stato: props.match.params.stato
+    }
   }
 
   componentDidMount() {
-    this.downloadCollegio();
+    Promise.all([
+      this.downloadCollegio(),
+      this.downloadNazionali()
+    ]).then(function(){
+      this.setState({loading:false})
+    }.bind(this))
   }
 
   async downloadCollegio() {
@@ -61,8 +78,26 @@ export default class CollegioPage extends React.PureComponent { // eslint-disabl
     }
   }
 
+  async downloadNazionali() {
+    if (this.state.estero) {
+      
+    } else {
+      const json = await getApi(`/risultati`);
+      this.setState({risultatiNazionali: json})
+    }
+  }
+
   render() {
     const title = this.state.collegio.cam17u_nom ? this.state.collegio.cam17u_nom : 'Il Mio Deputato';
+    if(this.state.loading){
+      return [
+        <Helmet key="helmet">
+          <title>{title}</title>
+          <meta name="description" content="trova e conosci il tuo deputato" />
+        </Helmet>,
+        <LoadingIndicator />
+      ]
+    }
     return [
       <Helmet key="helmet">
         <title>{title}</title>
@@ -106,11 +141,7 @@ export default class CollegioPage extends React.PureComponent { // eslint-disabl
             </div>
           </div>
         </div>
-        <div className="row no-gutters align-items-stretch bg-white">
-          <div className="col-12">
-            <Graph data={this.state.risultatiPlurinominale} />
-          </div>
-        </div>
+        <RiepilogoListe data={this.state.risultatiPlurinominale} nazionali={this.state.risultatiNazionali} />
       </div>
     ];
   }

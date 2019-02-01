@@ -1,6 +1,6 @@
 export const liste = {
   "LEGA":{
-    "label":"CDX", "coalizione":"Centro-Destra", "color":"rgbaCSX(49, 56,rgba(230, 29, 36, 0.5) 151, 0.5)"
+    "label":"CDX", "coalizione":"Centro-Destra", "color":"rgba(49, 56,rgba(230, 29, 36, 0.5) 151, 0.5)"
   },
   "FORZA ITALIA":{
     "label":"CDX", "coalizione":"Centro-Destra", "color":"rgba(49, 56, 151, 0.5)"

@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from '../HomePage';
 import CollegioPage from '../CollegioPage';
-// import DeputatoPage from '../DeputatoPage';
+import DeputatoPage from '../DeputatoPage';
 // import LeggePage from '../LeggePage';
 // import CercaDeputatoPage from '../CercaDeputatoPage';
 // import CercaCollegioPage from '../CercaCollegioPage';
@@ -15,9 +15,9 @@ import './style.scss';
 
 // import 'bootstrap-italia/dist/css/bootstrap-italia.min.css';
 import './globals'
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-import 'owl.carousel';
+// import 'owl.carousel/dist/assets/owl.carousel.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.css';
+// import 'owl.carousel';
 import 'bootstrap-italia'
 
 const CollegioEsteroPage = (props) => (
@@ -42,7 +42,7 @@ const App = () => (
       {/* <Route path="/cerca-collegio" component={CercaCollegioPage} /> */}
       {/* <Route path="/collegi/estero-:stato" component={CollegioEsteroPage} /> */}
       <Route path="/collegi/:id-:uni" component={CollegioPage} />
-      {/* <Route path="/deputati/:id" component={DeputatoPage} /> */}
+      <Route path="/deputati/:id" component={DeputatoPage} />
       {/* <Route path="/leggi/:id" component={LeggePage} /> */}
     </Switch>
     <Footer />

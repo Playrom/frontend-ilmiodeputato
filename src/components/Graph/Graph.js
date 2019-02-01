@@ -1,23 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Bar} from 'react-chartjs-2';
+import {Bar, HorizontalBar} from 'react-chartjs-2';
 import {forEach} from 'lodash'
 import {liste} from '../../utils/liste'
 
 class Graph extends React.PureComponent {
   state = {
     data: {},
-    chartOptions: {}
+    chartOptions: {},
+    vertical: false,
+    title: ''
   }
 
   static getDerivedStateFromProps(props, state) {
     const risultati = props.data
     const data = {labels: [], datasets:[{label: 'Percento', backgroundColor:[], borderColor:[], borderWidth: 1, data:[]}]}
     forEach(risultati, function(risultato){
-      data.labels.push(liste[risultato.lista].label)
-      data.datasets[0].backgroundColor.push(liste[risultato.lista].color)
-      data.datasets[0].borderColor.push(liste[risultato.lista].color)
-      data.datasets[0].data.push(parseFloat(risultato.percentuale))
+      if(risultato.tipo === "uninominale"){
+        data.labels.push(risultato.sigla_coalizione)
+        data.datasets[0].backgroundColor.push(risultato.colore_coalizione)
+        data.datasets[0].borderColor.push(risultato.colore_coalizione)
+        data.datasets[0].data.push(parseFloat(risultato.percentuale))
+      }else if(risultato.tipo === "plurinominale"){
+        data.labels.push(risultato.sigla_lista)
+        data.datasets[0].backgroundColor.push(risultato.colore_lista)
+        data.datasets[0].borderColor.push(risultato.colore_lista)
+        data.datasets[0].data.push(parseFloat(risultato.percentuale))
+      }
     })
     
     const chartOptions = {
@@ -26,13 +35,13 @@ class Graph extends React.PureComponent {
       },
       title: {
         display: true,
-        text: 'Risultato Coalizioni'
+        text: props.title || 'Risultato Coalizioni'
       },
       scales: {
         yAxes: [{
           ticks: {
-                min: 0,
-                max: 60,
+                min: props.min || 0,
+                max: props.max || 60,
                 callback: function(value){ return value+ "%"}
           },  
           scaleLabel: {
@@ -56,7 +65,12 @@ class Graph extends React.PureComponent {
               if(tooltipItems.length > 0){
                 const tooltipItem = tooltipItems[0]
                 const risultato = risultati[tooltipItem.index]
-                const lista = liste[risultato.lista].coalizione
+                let lista
+                if(risultato.tipo === "uninominale"){
+                  lista = risultato.coalizione
+                }else if(risultato.tipo === "plurinominale"){
+                  lista = risultato.lista
+                }
                 return lista
               }
             }
@@ -66,11 +80,17 @@ class Graph extends React.PureComponent {
 
     return {
       data: data,
-      chartOptions: chartOptions
+      chartOptions: chartOptions,
+      vertical: props.vertical || false
     }
   }
 
   render() {
+    if(this.state.vertical){
+      return (
+        <HorizontalBar data={this.state.data} options={this.state.chartOptions} />
+      );
+    }
     return (
       <Bar data={this.state.data} options={this.state.chartOptions} />
     );
@@ -79,6 +99,10 @@ class Graph extends React.PureComponent {
 
 Graph.propTypes = {
   data: PropTypes.array,
+  vertical: PropTypes.bool,
+  title: PropTypes.string,
+  min: PropTypes.number,
+  max: PropTypes.number
 };
 
 export default Graph;

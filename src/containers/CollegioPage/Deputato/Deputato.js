@@ -58,7 +58,9 @@ class Deputato extends React.PureComponent { // eslint-disable-line react/prefer
           <p>{this.props.info.info}</p>
           <p>Nat{genere} a <span className="deputato-luogo"><b>{luogoNascita}</b></span> il <b>{new Date(this.props.info.data_nascita).toLocaleDateString('it-IT')}</b></p>
           <div className="deputato-link">
-            <Link to={`/deputati/${this.props.info.id}`} className="link" >Altre Informazioni</Link>
+            <Link to={`/deputati/${this.props.info.id}`} className="link  d-flex justify-content-end" >
+              <button type="button" className="btn btn-primary">Dettagli</button>
+            </Link>
           </div>
         </div>
       </div>

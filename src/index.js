@@ -9,6 +9,9 @@ import createHistory from 'history/createBrowserHistory';
 // Import CSS reset and Global Styles
 import './styles/theme.scss';
 
+// import './globals'
+// import 'bootstrap-italia'
+
 // Import root app
 import App from './containers/App'
 
