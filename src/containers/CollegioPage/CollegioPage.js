@@ -29,7 +29,6 @@ export default class CollegioPage extends React.PureComponent { // eslint-disabl
     estero: false,
     stato: '',
     loading: true,
-
   }
 
   static getDerivedStateFromProps(props, state) {

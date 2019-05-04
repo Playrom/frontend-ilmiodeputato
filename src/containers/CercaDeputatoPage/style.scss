@@ -1,39 +1,15 @@
-.Hero{  
-  background: none;
-  height: 40em;
-}
-
-.Hero-content{
-  width: 75%!important;
-}
-
-.Button-List{
-  display: flex;
-  justify-content: space-between;
-}
-
-.cerca-nome{
-  max-height: 600px;
+.cerca-deputato-page{
   .table-nome{
     overflow-y: scroll;
     height: 450px;
   }
+
+  tr {
+    background-color: white;
+  }
+  
+  .table-cursor{
+    cursor: pointer;
+  }
 }
 
-.flex{
-  display: flex;
-  flex-direction: column;
-}
-
-.row{
-  display: flex;
-  align-items:center;
-}
-
-.cerca-text{
-  flex-basis: 20em;
-}
-
-.table-cursor{
-  cursor: pointer;
-}

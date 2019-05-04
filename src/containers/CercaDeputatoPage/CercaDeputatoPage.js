@@ -13,23 +13,26 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import { getApi } from '../../api-connect';
 
 class CercaDeputatoPage extends React.PureComponent {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps;
-  }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      deputati: [], deputatiDisplay: [], tipo: null, search: null, lista: null, loading: true
-    };
+  state = {
+    deputati: [], 
+    deputatiDisplay: [], 
+    tipo: null, 
+    search: null, 
+    lista: null, 
+    loading: true
   }
 
   componentDidMount() {
-    this.downloadDeputati();
+    Promise.all([
+      this.downloadDeputati()
+    ]).then(function(){
+      this.setState({loading:false})
+    }.bind(this))
   }
 
   async downloadDeputati() {
-    const json = await getApi('/deputati?fields=deputato_id,nome,cognome,collegio_plurinominale,lista,tipo_collegio');
+    const json = await getApi('/deputati?fields=id,nome,cognome,collegio_plurinominale,lista,tipo_collegio');
     this.setState({ deputati: json, deputatiDisplay: json, loading: false });
   }
 
@@ -41,7 +44,6 @@ class CercaDeputatoPage extends React.PureComponent {
   changeDisplay() {
     const txt = this.state.search.toLowerCase();
     const dep = this.state.deputati.filter((deputato) => deputato.nome.toLowerCase().includes(txt) || deputato.cognome.toLowerCase().includes(txt));
-    console.log(dep);
     this.setState({ deputatiDisplay: dep });
   }
 
@@ -51,19 +53,25 @@ class CercaDeputatoPage extends React.PureComponent {
 
   render() {
     let table = null;
+
     if (this.state.deputati.length > 0) {
       table = (
-        <div className="table-nome u-margin-r-top u-text-r-xs">
-          <table className="Table Table--striped Table--hover Table--withBorder">
-            <caption className="u-hiddenVisually">Cerca per nome</caption>
-            <thead>
-              <tr><th>Nome</th><th>Cognome</th><th>Collegio Plurinominale</th><th>Tipo di Elezione</th><th>Lista di Elezione</th></tr>
+        <div className="cerca-deputato-page">
+          <table className="table">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Collegio Plurinominale</th>
+                <th scope="col">Tipo di Elezione</th>
+                <th scope="col">Lista di Elezione</th>
+              </tr>
             </thead>
             <tbody>
               {this.state.deputatiDisplay.map((value) => (
-                <tr className="table-cursor" key={value.deputato_id} onClick={(e) => this.openDeputato(value.deputato_id)}>
-                  <td className="capitalized-text">{value.nome.toLowerCase()}</td>
+                <tr className="table-cursor" key={value.id} onClick={(e) => this.openDeputato(value.id)}>
                   <td className="capitalized-text">{value.cognome.toLowerCase()}</td>
+                  <td className="capitalized-text">{value.nome.toLowerCase()}</td>
                   <td className="capitalized-text">{value.collegio_plurinominale.toLowerCase()}</td>
                   <td className="capitalized-text">{value.tipo_collegio.toLowerCase()}</td>
                   <td className="capitalized-text">{(value.lista != null ? value.lista : ' - ').toLowerCase()}</td>
@@ -77,32 +85,30 @@ class CercaDeputatoPage extends React.PureComponent {
       table = <LoadingIndicator />;
     }
 
-    return (
-      <article>
-        <Helmet>
+    return [
+        <Helmet key="head">
           <title>Cerca Deputato</title>
           <meta name="description" content="Cerca deputato" />
-        </Helmet>
-        <section className="Hero u-background-grey-40">
-          <div className="Hero-content cerca-nome">
-            <div className="flex">
-              <div className="row u-margin-r-top u-text-r-xs ">
-                <p className="cerca-text">
-                  <a href="#" className="u-textClean u-color-60 u-text-h4"><span className="Dot u-background-60"></span>Lista Deputati</a>
-                </p>
+        </Helmet>,
+        <div className="it-hero-wrapper it-text-centered" key="content">
+          <div className="container-fluid">
+              <div className="row">
+                <div className="col-12">
+                    <div className="it-hero-text-wrapper bg-dark">
+                      <span className="it-category">Digita il nome del deputato</span>
+                      <h1 className="no_toc">Cerca il tuo deputato</h1>
+                      <div className="form-group">
+                        <input type="text" id="autocomplete" className="form-control" placeholder="Cerca per nome" onChange={(e) => this.nameInput(e)}  />
+                      </div>
+
+                     {table}
+
+                    </div>
+                </div>
               </div>
-
-              <div className="row u-margin-r-top u-text-r-xs ">
-                <input className="Form-input" id="autocomplete" aria-required="true" required placeholder="Cerca per nome" onChange={(e) => this.nameInput(e)} />
-              </div>
-
-              {table}
-
-            </div>
           </div>
-        </section>
-      </article>
-    );
+        </div>
+    ];
   }
 }
 

@@ -5,8 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from '../HomePage';
 import CollegioPage from '../CollegioPage';
 import DeputatoPage from '../DeputatoPage';
+import CercaDeputatoPage from '../CercaDeputatoPage';
 // import LeggePage from '../LeggePage';
-// import CercaDeputatoPage from '../CercaDeputatoPage';
 // import CercaCollegioPage from '../CercaCollegioPage';
 
 import Header from '../../components/Header';
@@ -34,7 +34,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage} />
-      {/* <Route path="/cerca-deputato" component={CercaDeputatoPage} /> */}
+      <Route path="/cerca-deputato" component={CercaDeputatoPage} />
       {/* <Route path="/cerca-collegio" component={CercaCollegioPage} /> */}
       {/* <Route path="/collegi/estero-:stato" component={CollegioEsteroPage} /> */}
       <Route path="/collegi/:id-:uni" component={CollegioPage} />
