@@ -22,26 +22,6 @@ class Gruppi extends React.PureComponent {
 
   render() {
 
-    // let tableIncarichi = null;
-
-    // if (this.state.incarichi && this.state.incarichi.length > 0) {
-    //   tableIncarichi = (
-    //     <div className="col u-text-r-xs u-background-grey-20">
-    //       <h2 className="u-color-white u-background-50 u-text-r-xs u-padding-r-all">Ruoli del deputato dentro il gruppo</h2>
-    //       <table className="Table Table--striped Table--hover Table--withBorder">
-    //         <caption className="u-hiddenVisually">Ruoli del deputato dentro il gruppo</caption>
-    //         <tbody>
-    //           {this.state.incarichi.map((value) => (
-    //             <tr key={value.incarico}>
-    //               <td><h2 className="u-color-50 capitalized-text">{value.incarico.toLowerCase()}</h2></td>
-    //             </tr>
-    //           ))}
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   );
-    // }
-
     return [
       <ul class="nav nav-tabs nav-tabs-cards" id="card-simple" role="tablist">
         {this.state.gruppi.map((gruppo,i) => {
@@ -74,11 +54,25 @@ class Gruppi extends React.PureComponent {
       </ul>,
       <div className="tab-content" id="card-simpleContent">
         {this.state.gruppi.map((gruppo,i) => {
-          console.log(gruppo.incarichi);
+          let endGruppo = null;
+          if(gruppo.fine_adesione) { endGruppo = moment(gruppo.fine_adesione).format('DD-MM-YYYY') }
+          let isActive = endGruppo === null ? 'active' : '';
           return (
-            <div className="tab-pane fade show active" id={"card-simpletab" + (i+1)} role="tabpanel" aria-labelledby={"card-simple" + (i+1) + "-tab"}>
-              <table class="table table-light">
+            <div className={`tab-pane fade show ${isActive}`} id={"card-simpletab" + (i+1)} role="tabpanel" aria-labelledby={"card-simple" + (i+1) + "-tab"}>
+              <table class="table table-light bg-white m-0">
+                <thead className="thead-dark ">
+                  <tr>
+                    <th className="primary-bg-a6">Incarico</th>
+                    <th className="primary-bg-a6">Data Inizio</th>
+                    <th className="primary-bg-a6">Data Fine</th>
+                  </tr>
+                </thead>
                 <tbody>
+                  <tr key="membro">
+                    <td className="u-color-50 capitalized-text">Membro</td>
+                    <td className="u-color-50 capitalized-text">{moment(gruppo.inizio_adesione).format('DD-MM-YYYY')}</td>
+                    <td className="u-color-50 capitalized-text">{endGruppo}</td>
+                  </tr>
                   {gruppo.incarichi.map((value) => {
                     let end = null;
                     if(value.fine_incarico) { end = moment(value.fine_incarico).format('DD-MM-YYYY') }

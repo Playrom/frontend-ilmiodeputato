@@ -1,6 +1,11 @@
 const twkb = require('twkb');
+let baseUrl = 'http://localhost:3000/api'
 
-const baseUrl = 'http://localhost:3000/api'
+if(process.env.NODE_ENV === "development"){
+  baseUrl = process.env.REACT_APP_API_PATH_DEV
+}else if(process.env.NODE_ENV === "production"){
+  baseUrl = process.env.REACT_APP_API_PATH_PROD
+}
 
 async function getApi(path, options = {}) {
   try {
