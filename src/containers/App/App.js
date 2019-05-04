@@ -13,11 +13,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.scss';
 
-// import 'bootstrap-italia/dist/css/bootstrap-italia.min.css';
 import './globals'
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
-// import 'owl.carousel';
 import 'bootstrap-italia'
 
 const CollegioEsteroPage = (props) => (

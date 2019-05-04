@@ -1,4 +1,4 @@
-@import '../../public/bootstrap-italia/scss/functions';
+@import '~bootstrap-italia/src/scss/functions';
 
 $senato: hsb(0, 84, 60) !default;
 $camera: hsb(221, 76, 60) !default;
@@ -11,5 +11,4 @@ $primary-b: 60;
 // $primary-s: 84;
 // $primary-b: 60;
 
-
-@import '../../public/bootstrap-italia/scss/bootstrap-italia.scss';
+@import '~bootstrap-italia/src/scss/bootstrap-italia.scss';

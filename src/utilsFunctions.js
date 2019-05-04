@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 
 function listaToSigla(lista) {
   switch (lista) {
@@ -14,6 +15,11 @@ function listaToSigla(lista) {
 function letteraGenere(genere) {
   return genere === 'FEMALE' ? 'a' : 'o';
 }
+
+String.prototype.beautifyName = function () {
+  // return this.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => (index === 0 ? letter.toUpperCase() : letter.toLowerCase()));
+  return this.toLowerCase();
+};
 
 module.exports = {
   listaToSigla, letteraGenere

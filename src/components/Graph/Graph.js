@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Bar, HorizontalBar} from 'react-chartjs-2';
 import {forEach} from 'lodash'
-import {liste} from '../../utils/liste'
 
 class Graph extends React.PureComponent {
   state = {

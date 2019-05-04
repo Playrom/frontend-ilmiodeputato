@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Deputato from '../Deputato';
-import { downloadMap } from '../../../api-connect';
 import Graph from '../../../components/Graph';
 import './style.scss';
 

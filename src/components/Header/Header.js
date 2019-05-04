@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './style.scss';
 
@@ -27,21 +26,21 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                     <span>Seguici su</span>
                     <ul>
                       <li>
-                        <a href="https://www.facebook.com" aria-label="Facebook" target="_blank">
+                        <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                           <svg className="icon">
                             <use xlinkHref="/bootstrap-italia/dist/svg/sprite.svg#it-facebook"></use>
                           </svg>
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.github.com" aria-label="Github" target="_blank">
+                        <a href="https://www.github.com" aria-label="Github" target="_blank" rel="noopener noreferrer">
                           <svg className="icon">
                             <use xlinkHref="/bootstrap-italia/dist/svg/sprite.svg#it-github"></use>
                           </svg>
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.twitter.com" aria-label="Twitter" target="_blank">
+                        <a href="https://www.twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
                           <svg className="icon">
                             <use xlinkHref="/bootstrap-italia/dist/svg/sprite.svg#it-twitter"></use>
                           </svg>

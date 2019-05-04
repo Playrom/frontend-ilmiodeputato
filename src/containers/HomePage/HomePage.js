@@ -6,7 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import { Helmet } from 'react-helmet';
 import { withRouter, Link } from 'react-router-dom';
 import './style.scss';
@@ -65,12 +64,12 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   render() {
 
     return [
-      <Helmet>
+      <Helmet key="head">
         <title>Home Page</title>
         <meta name="description" content="A React.js Boilerplate application homepage" />
       </Helmet>
       ,
-      <div className="it-hero-wrapper it-text-centered">
+      <div className="it-hero-wrapper it-text-centered" key="content">
         <div className="container-fluid">
             <div className="row">
               <div className="col-12">

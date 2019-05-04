@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import Sidebar from './Sidebar';
 import Gruppi from './Gruppi';
 import UfficiParlamentari from './UfficiParlamentari';
 import Commissioni from './Commissioni';

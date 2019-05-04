@@ -4,8 +4,6 @@ import moment from 'moment';
 
 import './style.scss';
 
-const images = require.context('../../../images', true);
-
 class UfficiParlamentari extends React.PureComponent {
   state = {
     uffici_parlamentari: [], 

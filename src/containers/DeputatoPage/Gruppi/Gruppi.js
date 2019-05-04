@@ -26,7 +26,6 @@ class Gruppi extends React.PureComponent {
       <ul class="nav nav-tabs nav-tabs-cards" id="card-simple" role="tablist">
         {this.state.gruppi.map((gruppo,i) => {
           let image = null;
-          let componente = null;
       
           if (gruppo.sigla_gruppo) {
             if (gruppo.sigla_gruppo !== 'MISTO') {

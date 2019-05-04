@@ -73,9 +73,4 @@ Deputato.propTypes = {
   className: PropTypes.string
 };
 
-String.prototype.beautifyName = function () {
-  // return this.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => (index === 0 ? letter.toUpperCase() : letter.toLowerCase()));
-  return this.toLowerCase();
-};
-
 export default Deputato;
